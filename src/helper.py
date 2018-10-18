@@ -6,6 +6,7 @@ import logging
 logger = logging.getLogger("helper")
 
 def azcli(command):
+    logger.debug("subprocess.Popen({}, stdout=subprocess.PIPE, stderr=subprocess.PIPE)".format(command))
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out,err = process.communicate()
     logger.debug(str(out,"utf-8"))

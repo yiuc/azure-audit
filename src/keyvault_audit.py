@@ -23,13 +23,19 @@ def auditreport():
         for kv in kv_list:
             logger.debug(kv)
             out = azcli(['az','keyvault', 'network-rule','list','--name',kv["name"]])
-            kv_netrule = json.loads(out)
-            # create the ip list
-            iplist_allow = "\n".join(ip["value"] for ip in kv_netrule["ipRules"])
-            # get the vitual network rule
-            virtualNetworkrule_allow = "\n".join(rule["id"].split("/")[-1] for rule in kv_netrule["virtualNetworkRules"])
-            # write to CSV
-            csv_writer.writerow([kv['name'],
-                                kv_netrule['defaultAction'],
-                                iplist_allow,
-                                virtualNetworkrule_allow])
+            if len(out)>0:
+                kv_netrule = json.loads(out)
+                # create the ip list
+                iplist_allow = "\n".join(ip["value"] for ip in kv_netrule["ipRules"])
+                # get the vitual network rule
+                virtualNetworkrule_allow = "\n".join(rule["id"].split("/")[-1] for rule in kv_netrule["virtualNetworkRules"])
+                # write to CSV
+                csv_writer.writerow([kv['name'],
+                                    kv_netrule['defaultAction'],
+                                    iplist_allow,
+                                    virtualNetworkrule_allow])
+            else:
+                csv_writer.writerow([kv['name'],
+                                    "N/A",
+                                    "N/A",
+                                    "N/A"])
