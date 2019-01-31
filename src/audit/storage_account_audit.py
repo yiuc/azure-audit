@@ -14,7 +14,7 @@ def auditreport():
     out = azcli(['az','storage','account', 'list'])
     sa_list = json.loads(out)
 
-    with open('../report/storage_account_audit.csv', mode='w') as csv_file:
+    with open('../../report/storage_account_audit.csv', mode='w') as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csv_writer.writerow(["name",
                             "defaultAction",

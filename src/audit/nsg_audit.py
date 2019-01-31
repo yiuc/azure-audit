@@ -13,7 +13,7 @@ def auditreport():
     out = azcli(['az','network','nsg', 'list'])
     nsg_list = json.loads(out)
 
-    with open('../report/nsg_audit.csv', mode='w') as csv_file:
+    with open('../../report/nsg_audit.csv', mode='w') as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csv_writer.writerow([
                             "rg-name",

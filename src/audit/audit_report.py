@@ -25,8 +25,8 @@ logging.getLogger().setLevel(LOG_LEVEL)  # Set this to DEBUG for deploy-api debu
 logger = logging.getLogger("audit_report")
 
 def combineCSV():
-    writer = ExcelWriter("../auditreport.xlsx")
-    for filename in glob.glob("../report/*.csv"):
+    writer = ExcelWriter("../../auditreport.xlsx")
+    for filename in glob.glob("../../report/*.csv"):
         logger.debug("Proceed CSV {}".format(filename))
         df_csv = pd.read_csv(filename)
         logger.debug(df_csv)

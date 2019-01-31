@@ -13,7 +13,7 @@ def auditreport():
     out = azcli(['az','keyvault', 'list'])
     kv_list = json.loads(out)
 
-    with open('../report/keyvault_audit.csv', mode='w') as csv_file:
+    with open('../../report/keyvault_audit.csv', mode='w') as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csv_writer.writerow(["name",
                             "defaultAction",
